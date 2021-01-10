@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('./models/User');
 const bodyParser = require('body-parser');
 const app = express();
+const userRoutes = require('./routes/userRoutes');
 require('dotenv').config();
 
 app.use(bodyParser.json());
-console.log(process.env.MONGO_URI);
+app.use(userRoutes);
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useCreateIndex: true })
 
