@@ -23,4 +23,22 @@ router.post('/items', async (req, res) => {
     }
 })
 
+router.put('/items/:id', async (req, res) => {
+    try {        
+        const result = await Item.findByIdAndUpdate(req.params.id, req.body, {new: true, useFindAndModify: false});
+        res.send(result);
+    } catch (err) {
+        return res.status(422).send(err);
+    }
+})
+
+router.delete('/items/:id', async (req, res) => {
+    try {
+        await Item.findByIdAndRemove(req.params.id);
+        res.send("item deleted");
+    } catch (err) {
+        return res.status(422).send(err);
+    }
+})
+
 module.exports = router;

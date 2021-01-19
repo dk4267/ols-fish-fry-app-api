@@ -10,6 +10,10 @@ const itemSchema = new mongoose.Schema({
     },
     price: {
         type: Number
+    },
+    sides: {
+        type: Array, 
+        required: false
     }
 });
 
